@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mouad | Boxer with Style</title>
+<style>
+  body {
+    margin: 0;
+    background: #0e0e0e;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+
+  /* PROFILE HEADER */
+  .profile {
+    text-align: center;
+    padding: 35px 20px 10px;
+  }
+
+  .profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #444;
+  }
+
+  .profile h1 {
+    margin-top: 12px;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  .profile p {
+    margin-top: 5px;
+    color: #ccc;
+    font-size: 16px;
+  }
+
+  /* CONTACT BUTTONS */
+  .contact {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    background: #222;
+    border-radius: 8px;
+    font-size: 15px;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #fff;
+  }
+  .btn:hover {
+    background: #333;
+    transform: scale(1.08);
+  }
+
+  /* NAVIGATION BAR */
+  .nav {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px 0;
+    background: #111;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+  }
+  .nav-item {
+    font-size: 15px;
+    color: #bbb;
+    cursor: pointer;
+  }
+  .nav-item:hover {
+    color: #fff;
+  }
+
+  /* GALLERY */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .post { position: relative; cursor: pointer; }
+  .post img {
+    width: 100%; height: 230px;
+    object-fit: cover; border-radius: 10px;
+    transition: 0.3s;
+  }
+
+  .post img:hover {
+    transform: scale(1.03);
+  }
+
+  .count-badge {
+    position: absolute;
+    bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  /* FEATURED */
+  .featured {
+    text-align: center;
+    padding: 20px;
+  }
+  .featured h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  .featured-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+  }
+  .featured-img {
+    position: relative;
+    cursor: pointer;
+    width: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .featured-img img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    transition: 0.3s;
+  }
+  .featured-img:hover img {
+    transform: scale(1.03);
+  }
+  /* Click Here overlay, appears only once */
+  .featured-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.2);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
+    pointer-events: none;
+  }
+  .desc {
+    margin-top: 12px;
+    color: #ccc;
+    font-size: 16px;
+  }
+
+  /* POPUP */
+  #popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 420px;
+  }
+
+  .popup-content img {
+    width: 100%; border-radius: 10px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -40px; right: 0;
+    font-size: 30px; cursor: pointer;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-size: 40px; cursor: pointer;
+  }
+  .left { left: -50px; }
+  .right { right: -50px; }
+
+  /* THEME TOGGLE */
+  .theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+    transition: 0.3s;
+  }
+  .theme-toggle:hover {
+    background: #333;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- PROFILE HEADER -->
+<div class="profile fade-in">
+  <img src="img3.jpg" alt="Mouad" />
+  <h1>Mouad | Boxer with Style</h1>
+  <p>Fashion-Inspired Athlete • Strong Presence • Clean Aesthetic</p>
+</div>
+
+<!-- CONTACT BUTTONS -->
+<div class="contact fade-in">
+  <a href="https://www.instagram.com/neeegroo_6/profilecard/?igsh=MXdvZnd0d2hlbGlmZg==" target="_blank" class="btn">Instagram</a>
+  <a href="https://wa.me/212697739449" target="_blank" class="btn">WhatsApp</a>
+  <a href="mailto:mouadadasko100@gmail.com" target="_blank" class="btn">Email</a>
+</div>
+
+<!-- NAVBAR -->
+<div class="nav fade-in">
+  <div class="nav-item">Posts</div>
+  <div class="nav-item">Fashion</div>
+  <div class="nav-item">Training</div>
+  <div class="nav-item">Lifestyle</div>
+</div>
+
+<!-- FEATURED -->
+<div class="featured fade-in">
+  <div class="featured-container">
+    <div class="featured-img" onclick="openFeatured(0)">
+      <img src="imgprfl.jpg" />
+    </div>
+    <div class="featured-img" onclick="openFeatured(1)">
+      <img src="img6.jpg" />
+    </div>
+  </div>
+  <p class="desc">Mouad is a young boxer known for his strength and focus. He is passionate about fashion and expresses himself through style and personal aesthetics, combining athletic discipline with modern fashion sense.
+</p>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery fade-in" id="gallery"></div>
+
+<!-- POPUP -->
+<div id="popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">✕</span>
+    <span class="arrow left" onclick="prevImage()">❮</span>
+    <img id="popupImg" />
+    <span class="arrow right" onclick="nextImage()">❯</span>
+  </div>
+</div>
+
+<!-- THEME TOGGLE -->
+<div class="theme-toggle" onclick="toggleTheme()">Toggle Light/Dark</div>
+
+<script>
+// POSTS DATA
+let posts = [
+  {
+    main: "grisildic_14040526_001548846.jpg",
+    images: ["grisildic_14040526_001548846.jpg","grisildic_14040526_001555958.jpg","grisildic_14040526_001555983.jpg","grisildic_14040526_001555993.jpg","grisildic_14040526_001555998.jpg","grisildic_14040526_001556018.jpg"]
+  },
+  {
+    main: "grisildic_14040826_155937797.jpg",
+    images: ["grisildic_14040826_155937797.jpg","grisildic_14040826_155937817.jpg"]
+  },
+  {
+    main: "grisildic_14040826_160039738.jpg",
+    images: ["grisildic_14040826_160039738.jpg","grisildic_14040826_160039753.jpg","grisildic_14040826_160039769.jpg"]
+  },
+  {
+    main: "grisildic_14040826_155133711.jpg",
+    images: ["grisildic_14040826_155133711.jpg","grisildic_14040826_155133723.jpg","grisildic_14040826_155133732.jpg"]
+  },
+  {
+    main: "grisildic_14040826_154730211.jpg",
+    images: ["grisildic_14040826_154730211.jpg","grisildic_14040826_154730226.jpg","grisildic_14040826_154730241.jpg"]
+  },
+  {
+    main: "grisildic_14040727_010005506.jpg",
+    images: ["grisildic_14040727_010005506.jpg","grisildic_14040727_010005520.jpg","grisildic_14040727_010005528.jpg","grisildic_14040727_010005548.jpg","grisildic_14040727_010005566.jpg","grisildic_14040727_010005586.jpg"]
+  },
+  {
+    main: "grisildic_14040609_155629075.jpg",
+    images: ["grisildic_14040609_155629075.jpg","grisildic_14040609_155629097.jpg","grisildic_14040609_155629110.jpg"]
+  },
+  {
+    main: "grisildic_14040730_220129189.jpg",
+    images: ["grisildic_14040730_220129189.jpg","grisildic_14040730_220129236.jpg","grisildic_14040730_220129257.jpg","grisildic_14040730_220129277.jpg"]
+  }
+];
+
+// FEATURED DATA
+let featuredImages = ["imgprfl.jpg","img6.jpg"];
+
+let gallery = document.getElementById("gallery");
+posts.forEach((post,index)=>{
+  let div = document.createElement("div");
+  div.className="post";
+  div.innerHTML = `<img src="${post.main}" /><div class="count-badge">${post.images.length} photos</div>`;
+  div.onclick = ()=>openPost(index,0);
+  gallery.appendChild(div);
+});
+
+let currentPost = 0;
+let currentImg = 0;
+let isFeatured = false;
+
+function openPost(postIndex,imgIndex){
+  currentPost = postIndex;
+  currentImg = imgIndex;
+  isFeatured = false;
+  document.getElementById("popupImg").src = posts[postIndex].images[imgIndex];
+  document.getElementById("popup").style.display="flex";
+}
+
+function openFeatured(index){
+  currentImg=index;
+  isFeatured=true;
+  document.getElementById("popupImg").src = featuredImages[index];
+  document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+function nextImage(){
+  if(isFeatured){
+    currentImg=(currentImg+1)%featuredImages.length;
+    document.getElementById("popupImg").src = featuredImages[currentImg];
+  }else{
+    currentImg=(currentImg+1)%posts[currentPost].images.length;
+    document.getElementById("popupImg").src = posts[currentPost].images[currentImg];
+  }
+}
+
+function prevImage(){
+  if(isFeatured){
+    currentImg=(currentImg-1+featuredImages.length)%featuredImages.length;
+    document.getElementById("popupImg").src = featuredImages[currentImg];
+  }else{
+    currentImg=(currentImg-1+posts[currentPost].images.length)%posts[currentPost].images.length;
+    document.getElementById("popupImg").src = posts[currentPost].images[currentImg];
+  }
+}
+
+// THEME TOGGLE
+let dark = true;
+function toggleTheme(){
+  if(dark){
+    document.body.style.background="#fff";
+    document.body.style.color="#000";
+    dark=false;
+  }else{
+    document.body.style.background="#0e0e0e";
+    document.body.style.color="#fff";
+    dark=true;
+  }
+}
+
+// SWIPE SUPPORT
+let startX=0;
+document.getElementById("popup").addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+document.getElementById("popup").addEventListener("touchend",e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(startX-endX>50) nextImage();
+  if(endX-startX>50) prevImage();
+});
+</script>
+</body>
+</html>
